@@ -28,12 +28,14 @@ import util.GraphLoader;
  */
 public class MapGraph {
 	Map<GeographicPoint, MapModel> nodes;
+	private HashSet<MapRoad> edges;
 
 	/**
 	 * Create a new empty MapGraph
 	 */
 	public MapGraph() {
 		nodes = new HashMap<>();
+		edges = new HashSet<MapRoad>();
 	}
 
 	/**
@@ -64,7 +66,7 @@ public class MapGraph {
 	 * @return The number of edges in the graph.
 	 */
 	public int getNumEdges() {
-		return nodes.values().size();
+		return edges.size();
 	}
 
 	/**
@@ -115,6 +117,7 @@ public class MapGraph {
 		} else {
 			MapRoad edge = new MapRoad(from, to, roadName, roadType, length);
 			nodes.get(from).setEdge(edge);
+			edges.add(edge);
 		}
 	}
 
